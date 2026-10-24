@@ -12,6 +12,10 @@ OOP Lab contains 17 interactive C++ lessons and 121 explained practice MCQs. Cha
 
 The practice bank is for revision; it is not an actual exam paper. Progress stays in the browser. Use the lab's progress export/import controls to move it between devices or between local and hosted copies.
 
+Choose **Calm** or **Persona** in the header. The choice is remembered on this device across the library, lab and HTML notes. Both appearances share the improved navigation and learning controls. Switching appearance keeps the current answer and lesson state. Motion can be switched separately, and system reduced-motion preferences are respected.
+
+The lab opens with immediate-feedback practice: choose an answer, check it, read the explanation, then continue. Mock exam (delayed feedback) reveals explanations at the end. Recall uses a focused deck with self-assessment. The HTML notes use a wider screen layout with an ellipsis contents drawer; printing retains the A4 edition.
+
 ## Repository layout
 
 ```text
