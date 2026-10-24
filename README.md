@@ -12,9 +12,13 @@ OOP Lab contains 17 interactive C++ lessons and 121 explained practice MCQs. Cha
 
 The practice bank is for revision; it is not an actual exam paper. Progress stays in the browser. Use the lab's progress export/import controls to move it between devices or between local and hosted copies.
 
-Choose **Calm** or **Persona** in the header. The choice is remembered on this device across the library, lab and HTML notes. Both appearances share the improved navigation and learning controls. Switching appearance keeps the current answer and lesson state. Motion can be switched separately, and system reduced-motion preferences are respected.
+Choose **Calm** or **Persona** in the header. The choice is remembered on this device across the library, lab and HTML notes. Both appearances share the same navigation and learning controls. Switching appearance keeps the current answer and lesson state. Animations respect system reduced-motion preferences.
 
-The lab opens with immediate-feedback practice: choose an answer, check it, read the explanation, then continue. Mock exam (delayed feedback) reveals explanations at the end. Recall uses a focused deck with self-assessment. The HTML notes use a wider screen layout with an ellipsis contents drawer; printing retains the A4 edition.
+The lab opens with immediate-feedback practice: choose an answer, check it, read the explanation, then continue. Mock exam (delayed feedback) and retrying misses are secondary choices beneath Start. All 17 topics, search and exam focus are together in Topics & more filters.
+
+Lessons put code beside the live state on desktop. On phones, the current line and a compact state readout remain visible while scrolling through the example. Memory columns distinguish automatic frames, dynamic targets, shared static values and instructions where relevant; diagrams use symbolic addresses and conceptual storage, not a mandated physical layout. Questions open inside the lesson and preserve the experiment.
+
+The **Notes** tab opens compact notes, revision, detailed reference and their downloads from anywhere in the lab. Returning to MCQs from Notes resumes an unfinished session in the same tab. Recall is a short explanation exercise without answer options, with an option to review concepts behind recent MCQ misses. Self-assessment is separate from exam scores. The navigation panel can be resized; click outside or press Escape to close it. The HTML notes retain an ellipsis contents drawer and A4 printing.
 
 ## Repository layout
 
