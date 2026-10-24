@@ -1,0 +1,29 @@
+{
+  "title": "Course library",
+  "description": "Interactive lessons, visual notes and exam practice. Pick a course and learn by doing.",
+  "tracks": [],
+  "courses": [
+    {
+      "id": "oop",
+      "title": "Object-Oriented Programming",
+      "shortTitle": "OOP Lab",
+      "language": "C++",
+      "trackIds": [],
+      "description": "Follow the memory. Change the code. See why it works.",
+      "topics": ["Pointers & references", "Objects & copying", "Virtual dispatch", "Recursion"],
+      "lessonCount": 17,
+      "questionCount": 121,
+      "lab": "courses/oop/index.html",
+      "downloads": [
+        {"title": "Offline lab HTML", "path": "courses/oop/index.html", "filename": "OOP-Lab.html", "description": "The whole lab in one file"},
+        {"title": "Compact notes pack", "path": "courses/oop/downloads/compact-notes.zip", "description": "PDF, interactive HTML and text"},
+        {"title": "Reference & summary pack", "path": "courses/oop/downloads/reference-and-summary.zip", "description": "Both books in PDF, HTML and text"}
+      ],
+      "notes": [
+        {"title": "Compact notes", "pages": 16, "description": "Memory columns, short explanations and prediction checks.", "html": "courses/oop/notes/compact.html", "pdf": "courses/oop/notes/compact.pdf", "text": "courses/oop/notes/compact.txt", "recommended": true},
+        {"title": "Revision summary", "pages": 9, "description": "A quick visual pass through the important distinctions.", "html": "courses/oop/notes/summary.html", "pdf": "courses/oop/notes/summary.pdf", "text": "courses/oop/notes/summary.txt"},
+        {"title": "Detailed reference", "pages": 43, "description": "Longer explanations and worked examples when you need them.", "html": "courses/oop/notes/reference.html", "pdf": "courses/oop/notes/reference.pdf", "text": "courses/oop/notes/reference.txt"}
+      ]
+    }
+  ]
+}

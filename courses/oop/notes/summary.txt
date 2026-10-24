@@ -1,0 +1,225 @@
+﻿C++ / OOP course summary
+
+Use this for revision after the detailed lecture notes. Examples assume C++17 unless stated. The two
+supplementary sections are lower priority than the core memory and OOP topics.
+
+Instructor exam focus: 'array is a constant pointer'. Intended meaning: the array name cannot be
+reseated, but mutable elements can change. Exact C++ rule: an array is a distinct type that often
+converts to a pointer to its first element. Do not confuse a fixed array name with constant elements
+or literal pointer-type identity.
+
+Before calculating output
+
+Check in this order: declarations and types -> access -> lifetime and bounds -> selected function ->
+values and output. Compilation failure and undefined behavior are not ordinary numerical answers.
+
+1. Expressions, types and conversions
+
+- Zero is false; any nonzero numeric value is true, including a negative value.
+- Postfix supplies the old value; prefix supplies the updated value. Track the expression result and
+final variable separately.
+- Integer division happens before assignment: double r=5/2; stores 2. Convert an operand first to
+obtain 2.5: static_cast<double>(5)/2.
+- In-range floating-to-int conversion truncates toward zero. int(-4.8) is -4.
+- sizeof(char)==1 is guaranteed. Other example sizes need an explicit platform assumption.
+
+    int x=2;
+    int a=x++ + 3; // a=5, x=3
+    int b=++x + 3; // b=7, x=4
+
+2. Conditions, branches and loops
+
+- Built-in && and || short-circuit. A skipped operand has no side effects.
+- 3&&4 is true; 3&4 is 0; 3|4 is 7. Truth tests and bit operations are different.
+- A switch chooses an entry label, then statements can fall through. Later cases do not re-test the
+selector. Case values must be distinct constant integral values after conversion.
+- for: initialize once -> condition -> body -> update -> condition.
+- while tests before entry; do/while tests after the body.
+- break exits the nearest loop/switch. continue skips the rest of the iteration; a for loop still
+reaches its update.
+
+3. Arrays, C strings and records
+
+- A four-element array has readable indices 0 through 3. One-past is a boundary, not an extra
+element.
+- int a[4]={7}; gives 7,0,0,0. An ordinary uninitialized local int a[4]; has no such guarantee.
+- A 2D array is an array of row arrays. grid[row][col] selects within a row.
+- char name[]="Ada"; needs four chars, including the null terminator. Its text length is three.
+- A struct groups named fields; padding can make its size larger than the sum of field sizes. C++
+structs can have methods and inherit.
+- p->field means (*p).field when p is a valid pointer to the object.
+
+4. Functions, scope and storage
+
+- Declaration: what a function is. Definition: its body. A suitable declaration must be visible
+before a call.
+- Scope controls where a name is usable. Storage duration controls how long its object exists.
+- An ordinary local starts again on each call. A local static initializes once and retains its state
+across calls in the same run.
+- A local pointer can have automatic storage while its target has dynamic storage. Not every
+variable written without new is a stack local.
+
+    int n=3; return ++n;          successive calls: 4, 4, 4
+    static int n=3; return ++n;   successive calls: 4, 5, 6
+
+5. Declarations, files and the build pipeline
+
+Header declarations -> preprocess/compile -> object files -> link -> executable.
+
+- A prototype allows checked calls; it does not supply the required implementation.
+- No visible declaration: compilation problem. Required definition missing from linked code:
+commonly a linker problem.
+- void Weapon::attack(){...} defines a member. A free void attack(){...} is a different function.
+- Include guards prevent repeated inclusion from redefining the class in one translation unit.
+- An object file is compiled code, not an instance of a class.
+
+6. Pointers and array boundaries
+
+    p [address of x] -------> x [5] <------- r (alias)
+    &p: address of p          &x == &r
+    p: target address         *p and r designate x
+
+- int* q=p; copies an address; both pointers can reach the same target. q=&y; changes q alone; *q=9;
+changes its current target.
+- p+1 advances one element, not one byte. p-q counts elements within the same array or its one-past
+positions.
+- One-past may be formed but not dereferenced. Null, uninitialized and dangling pointers also cannot
+be safely dereferenced.
+- *p++ means *(p++); (*p)++ changes the pointed-to value.
+- sizeof(a) on an actual array measures the complete array. In a parameter declared int a[], a is
+adjusted to a pointer parameter.
+
+7. References and parameter passing
+
+| Parameter | What the parameter represents | Effect of shown mutation |
+| int n | separate int value | ++n changes the copy |
+| int* p | separate pointer, copied address | ++*p changes caller's target |
+| int& n | alias for caller's object | ++n changes caller's object |
+
+A reference must bind to a suitable live object. It cannot reseat: after int& r=x;, r=y; copies y's
+value into x. A reference can still dangle if the referent dies. Passing a pointer by value does not
+prevent pointee mutation.
+
+8. Callbacks and dynamic allocation
+
+- int (*f)(int,int)=add; is a function pointer. int* f(int,int); declares a function returning an
+int pointer.
+- f(2,3) invokes the current compatible target. A function-pointer array stores selectable
+behaviors.
+- new int(5) initializes to 5; new int{} initializes to zero; plain new int does not zero-initialize
+that scalar.
+- Pair new/delete and new[]/delete[].
+- Deletion ends the target lifetime; pointer aliases are not automatically cleared. Losing the
+owning address can leak storage.
+
+9. Recursion and the call stack
+
+Specify the input domain, base case and progress toward the base. The simple factorial/power
+examples require nonnegative inputs and representable results.
+
+    factorial(3) waits for 3 * factorial(2)
+    factorial(2) waits for 2 * factorial(1)
+    factorial(1) waits for 1 * factorial(0)
+    factorial(0) returns 1
+    unwind: 1 -> 1 -> 2 -> 6
+
+There are four factorial calls here, excluding main. Each call preserves its own n and pending work.
+A logically terminating recursion can still overflow its result type. Work after a recursive call
+means the shown form is not tail recursion.
+
+10. Objects, encapsulation and abstraction
+
+- Class = type; object = instance. Non-static state belongs to each object.
+- Encapsulation controls state changes through permitted operations. A validating setter can
+preserve an invariant; a getter need not imply a setter.
+- Abstraction exposes the useful interface while hiding irrelevant implementation detail.
+- class defaults to private member/base access; struct defaults to public. Both support C++ class
+features.
+- Private is class/friend access; protected also supports qualifying derived contexts; public is
+generally available through an appropriate object/interface.
+
+11. Constructors, destructors and lifetime
+
+- Constructor: class name, no return type. Destructor: ~ClassName(), no return type or ordinary
+parameters.
+- Declaring an ordinary constructor can suppress the implicit default constructor. A zero-argument
+construction must have a viable constructor.
+- Base initializes first; members initialize in declaration order; constructor body runs afterward.
+- Required base arguments belong in the initializer list: Studio():Company(5){}.
+- Normal destruction reverses construction. Deleting a derived object through an owning base pointer
+requires suitable virtual destruction in the ordinary course examples.
+
+12. Inheritance and virtual dispatch
+
+The static pointer/reference type controls the visible interface. A matching virtual call uses the
+actual object's final overrider. A base view does not transform or slice the original object; a
+separate base-value copy can slice.
+
+| Virtual walk starts at | Creature* to Superhero | Human* to Superhero |
+| Nowhere | Creature::walk | Human::walk |
+| Creature | Superhero::walk | Superhero::walk |
+| Human only | Creature::walk | Superhero::walk |
+
+If Superhero has no matching override, the inherited final overrider can be Human. override checks
+the relationship. A class with a remaining pure virtual operation is abstract: its type and pointers
+are usable, but it cannot be instantiated.
+
+13. Copying and ownership
+
+| Code or action | Meaning |
+| C b(a); or C b=a; at declaration | construct a new b |
+| b=a; after b already exists | copy assignment |
+| copy a raw pointer member | copy address; share target |
+| allocate new T(*other.ptr) | independent target copy |
+
+Implicit copying is memberwise. A class member follows its own copy semantics. Owning raw pointers
+need consistent copy construction, assignment and destruction; one custom copy constructor is not
+enough. Return-by-value does not guarantee a fixed copy count because elision/moves matter.
+
+14. Overloading, overriding and Complex arithmetic
+
+- Overloading chooses a signature; overriding supplies an implementation of an inherited virtual
+operation.
+- Parameter names and return type alone do not distinguish ordinary overloads.
+- Complex addition combines corresponding real/imaginary components into a result. A non-mutating +
+leaves inputs unchanged.
+- Prefix: operator++(). Postfix: operator++(int), normally saving and returning the old value.
+- A class defines its own increment meaning. Operator overloading cannot change precedence or invent
+a new operator symbol.
+
+15. UML and object relationships
+
+| Relationship | Recognition rule | Example policy |
+| Association | solid link | Player targets an independent Enemy |
+| Shared aggregation | hollow diamond at whole | Party groups independently living Players |
+| Composition | filled diamond at whole | Character owns its Inventory lifetime |
+| Inheritance | hollow triangle points to base | Mage is a Character |
+
+Visibility: + public, - private, # protected. Multiplicity: 0..1 optional one; * zero or more.
+Choose ownership from the stated model, not from nouns alone. Nonvirtual diamond inheritance can
+introduce two copies of a common base; virtual inheritance is different from virtual function
+dispatch.
+
+16. Supplementary: pointer chains, const and void*
+
+- int** pp=&p;: *pp designates p; **pp designates p's int target.
+- int* const p cannot reseat; const int* p cannot write through p; const int* const p restricts
+both.
+- A pointer-to-const does not freeze a mutable object through every other access path.
+- void* needs a suitable actual typed view before dereference. A cast does not transform the stored
+object.
+- Pointer + pointer, pointer multiplication/division, and p-=q for two pointers are ill-formed.
+
+17. Supplementary: instance and static members
+
+Non-static fields are per object. A static data member is class-shared state. A static member
+function has no implicit this, so it needs an explicit instance to reach non-static state. A
+constructor counter counts only the construction paths implemented; it does not automatically count
+all copies or live objects.
+
+Last pass
+
+Draw addresses separately from values. Separate initialization from assignment. Write down static
+type and actual type before a virtual call. Check object lifetime and array bounds before
+calculating a number. For the flagged array question, recognize both the intended classroom cue and
+the exact C++ distinction.
