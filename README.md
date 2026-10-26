@@ -2,7 +2,8 @@
 
 Interactive lessons, visual notes and exam practice, organized by course.
 
-- [Open the course library](https://roseglyph.github.io/course-obb/)
+- [Start previous-exam practice](https://roseglyph.github.io/course-obb/)
+- [Open the course library](https://roseglyph.github.io/course-obb/library.html)
 - [Open OOP Lab](https://roseglyph.github.io/course-obb/courses/oop/)
 - [Read the compact notes](https://roseglyph.github.io/course-obb/courses/oop/notes/compact.html) or [get the PDF](https://roseglyph.github.io/course-obb/courses/oop/notes/compact.pdf)
 
@@ -10,11 +11,13 @@ Interactive lessons, visual notes and exam practice, organized by course.
 
 OOP Lab contains 17 interactive C++ lessons and 180 explained practice MCQs: 59 reviewed previous-exam questions and 121 lecture-based questions. Change values, trace memory and predict the result. The notes include a 16-page compact edition, a 9-page revision summary and a 43-page detailed reference. Each book is available as standalone HTML, A4 PDF and plain text. The library also links downloadable book packs and an offline copy of the complete lab.
 
-Previous exams is the default practice bank. It consolidates repeated copies from a shared OOP exam/question archive; clarified and adapted items are labeled. Answers were reviewed against C++17 and code examples were checked with a compiler. These are study answers, rather than an official answer key or a prediction of the next exam. Lecture-based practice remains available separately, including the instructor exam-focus cue. Browse answers provides a searchable revision library and a TXT download of either bank.
+Previous exams is the default practice bank. It consolidates repeated copies from a shared OOP exam/question archive; the private authoring records retain the original wording and editing decisions. Answers were reviewed against C++17 and code examples were checked with a compiler. These are study answers, rather than an official answer key or a prediction of the next exam. Lecture-based practice remains available separately, including the instructor exam-focus cue. Browse answers provides a searchable revision library and a TXT download of either bank. Thirteen questions include diagrams for inheritance, constructor order, copying, member construction and virtual dispatch. Feedback focuses on the answer and reasoning; editorial notes stay in the private authoring records.
 
 Progress stays in the browser, independently for each visitor, with bank-specific statistics. Existing lecture-question progress is preserved. Use the lab's progress export/import controls to move it between devices or between local and hosted copies.
 
 Choose **Calm** or **Persona** in the header. The choice is remembered on this device across the library, lab and HTML notes. Both appearances share the same navigation and learning controls. Switching appearance keeps the current answer and lesson state. Animations respect system reduced-motion preferences.
+
+The root URL currently redirects directly to previous-exam practice. The course chooser remains at `library.html`. To restore it as the root landing page, remove `defaultEntry` from `catalog.json` and run the builder.
 
 The lab opens with immediate-feedback practice: choose an answer, read the explanation, then continue. Mock exam (delayed feedback), retrying misses and the answer library are secondary choices beneath Start. Topics & more filters contains the topics available in the chosen bank and search; instructor exam focus is available in the lecture-based bank.
 

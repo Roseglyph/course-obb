@@ -12,6 +12,20 @@ def safe_path(value):
 
 def e(value):return html.escape(str(value),quote=True)
 
+def entry_document(catalog,library):
+    target=catalog.get('defaultEntry')
+    if not target:return library
+    if not isinstance(target,str) or not re.fullmatch(r'[A-Za-z0-9_./-]+#[A-Za-z0-9_/-]+',target):
+        raise ValueError('defaultEntry must be a relative course path and section')
+    page=target.split('#',1)[0]
+    safe_path(page+'index.html' if page.endswith('/') else page)
+    return f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OOP exam practice</title><link rel="icon" href="favicon.png">
+<meta http-equiv="refresh" content="0;url={e(target)}">
+<script>location.replace({json.dumps(target)});</script></head>
+<body><p>Opening <a href="{e(target)}">OOP previous-exam practice</a>…</p><p><a href="library.html">All courses</a></p></body></html>'''
+
 def build():
     catalog=json.loads((ROOT/'catalog.json').read_text(encoding='utf-8'));cards=[];track_names={t['id']:t['title'] for t in catalog['tracks']}
     ids=set()
@@ -40,7 +54,8 @@ def build():
     values={'TITLE':e(catalog['title']),'DESCRIPTION':e(catalog['description']),'CARDS':'\n'.join(cards),'TRACKS':track_control,'COUNT':str(len(cards)),'COUNT_LABEL':'course' if len(cards)==1 else 'courses','APPEARANCE_CSS':(ROOT/'site/appearance.css').read_text(encoding='utf-8'),'APPEARANCE_JS':(ROOT/'site/appearance.js').read_text(encoding='utf-8')}
     for key,value in values.items():template=template.replace('{{'+key+'}}',value)
     assert '{{' not in template
-    (ROOT/'index.html').write_text(template,encoding='utf-8')
+    (ROOT/'library.html').write_text(template,encoding='utf-8')
+    (ROOT/'index.html').write_text(entry_document(catalog,template),encoding='utf-8')
     print(f'Built {len(cards)} course card(s); all catalog links exist.')
 
 MEMORY='''<svg viewBox="0 0 290 310" role="presentation"><rect x="22" y="12" width="250" height="286" rx="20" fill="#eef7f4"/><text x="48" y="46" fill="#16685f" font-size="12" font-family="sans-serif" font-weight="700" letter-spacing="1">FOLLOW THE MEMORY</text><text x="44" y="108" fill="#778b8a" font-size="13" font-family="monospace">S0</text><rect x="75" y="70" width="145" height="67" rx="5" fill="white" stroke="#aacdc4"/><text x="89" y="93" fill="#53676b" font-size="13" font-family="monospace">x : int</text><text x="147" y="123" text-anchor="middle" fill="#123c3a" font-size="28" font-family="sans-serif" font-weight="700">7</text><text x="44" y="208" fill="#778b8a" font-size="13" font-family="monospace">S1</text><rect x="75" y="170" width="145" height="67" rx="5" fill="#fff2dd" stroke="#dec4a0"/><text x="89" y="193" fill="#7d6649" font-size="13" font-family="monospace">p : int*</text><text x="147" y="223" text-anchor="middle" fill="#a65c1e" font-size="25" font-family="sans-serif" font-weight="700">S0</text><path d="M220 204 H244 V104 H226" fill="none" stroke="#168678" stroke-width="2.5"/><polygon points="220,104 229,99 229,109" fill="#168678"/><text x="147" y="271" text-anchor="middle" fill="#16685f" font-size="14" font-family="sans-serif">An address. A route. A value.</text></svg>'''

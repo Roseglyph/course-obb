@@ -2,6 +2,7 @@
   "title": "Course library",
   "description": "Interactive lessons, visual notes and exam practice. Pick a course and learn by doing.",
   "tracks": [],
+  "defaultEntry": "courses/oop/#practice/previous",
   "courses": [
     {
       "id": "oop",

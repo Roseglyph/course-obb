@@ -187,7 +187,7 @@ document.querySelector('[data-print]').addEventListener('click',()=>window.print
  document.querySelector('[data-reader-print]').addEventListener('click',()=>{setOpen(false);window.print();});
  document.querySelectorAll('[data-reader-close]').forEach(b=>b.addEventListener('click',()=>setOpen(false)));
  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false,false)));
- document.querySelector('[data-library]').href=location.pathname.includes('/courses/oop/notes/')?'../../../index.html':'https://roseglyph.github.io/course-obb/';
+ document.querySelector('[data-library]').href=location.pathname.includes('/courses/oop/notes/')?'../../../library.html':'https://roseglyph.github.io/course-obb/library.html';
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!drawer.hidden){e.preventDefault();setOpen(false);}if(e.key==='Tab'){document.body.classList.remove('reader-header-away');if(!drawer.hidden){const items=[...drawer.querySelectorAll('a,button')],first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}}});
  let anchor=scrollY,pending=false;addEventListener('scroll',()=>{if(pending)return;pending=true;requestAnimationFrame(()=>{const y=Math.max(0,scrollY),delta=y-anchor;if(y<32||!drawer.hidden||document.querySelector('.reader-header :focus-visible'))document.body.classList.remove('reader-header-away');else if(delta>8&&y>90)document.body.classList.add('reader-header-away');else if(delta< -5)document.body.classList.remove('reader-header-away');if(Math.abs(delta)>5)anchor=y;pending=false;});},{passive:true});
 })();
