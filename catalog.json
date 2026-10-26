@@ -12,7 +12,9 @@
       "description": "Follow the memory. Change the code. See why it works.",
       "topics": ["Pointers & references", "Objects & copying", "Virtual dispatch", "Recursion"],
       "lessonCount": 17,
-      "questionCount": 121,
+      "questionCount": 180,
+      "previousExamQuestionCount": 59,
+      "lectureQuestionCount": 121,
       "lab": "courses/oop/index.html",
       "downloads": [
         {"title": "Offline lab HTML", "path": "courses/oop/index.html", "filename": "OOP-Lab.html", "description": "The whole lab in one file"},

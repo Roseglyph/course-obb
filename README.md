@@ -8,13 +8,15 @@ Interactive lessons, visual notes and exam practice, organized by course.
 
 ## Object-Oriented Programming
 
-OOP Lab contains 17 interactive C++ lessons and 121 explained practice MCQs. Change values, trace memory and predict the result. The notes include a 16-page compact edition, a 9-page revision summary and a 43-page detailed reference. Each book is available as standalone HTML, A4 PDF and plain text. The library also links downloadable book packs and an offline copy of the complete lab.
+OOP Lab contains 17 interactive C++ lessons and 180 explained practice MCQs: 59 reviewed previous-exam questions and 121 lecture-based questions. Change values, trace memory and predict the result. The notes include a 16-page compact edition, a 9-page revision summary and a 43-page detailed reference. Each book is available as standalone HTML, A4 PDF and plain text. The library also links downloadable book packs and an offline copy of the complete lab.
 
-The practice bank is for revision; it is not an actual exam paper. Progress stays in the browser. Use the lab's progress export/import controls to move it between devices or between local and hosted copies.
+Previous exams is the default practice bank. It consolidates repeated copies from a shared OOP exam/question archive; clarified and adapted items are labeled. Answers were reviewed against C++17 and code examples were checked with a compiler. These are study answers, rather than an official answer key or a prediction of the next exam. Lecture-based practice remains available separately, including the instructor exam-focus cue. Browse answers provides a searchable revision library and a TXT download of either bank.
+
+Progress stays in the browser, independently for each visitor, with bank-specific statistics. Existing lecture-question progress is preserved. Use the lab's progress export/import controls to move it between devices or between local and hosted copies.
 
 Choose **Calm** or **Persona** in the header. The choice is remembered on this device across the library, lab and HTML notes. Both appearances share the same navigation and learning controls. Switching appearance keeps the current answer and lesson state. Animations respect system reduced-motion preferences.
 
-The lab opens with immediate-feedback practice: choose an answer, read the explanation, then continue. Mock exam (delayed feedback) and retrying misses are secondary choices beneath Start. All 17 topics, search and exam focus are together in Topics & more filters.
+The lab opens with immediate-feedback practice: choose an answer, read the explanation, then continue. Mock exam (delayed feedback), retrying misses and the answer library are secondary choices beneath Start. Topics & more filters contains the topics available in the chosen bank and search; instructor exam focus is available in the lecture-based bank.
 
 Lessons put code beside the live memory column on desktop and directly above it on phones. Play, Step and Reset stay within reach; the source window automatically scrolls to the highlighted line. The address-space column separates stack frames, heap targets, static data and instructions, with routes from pointer cells to their targets. Diagrams use symbolic addresses and illustrate a common implementation rather than a mandated physical layout. Questions are shown inside the lesson, give feedback on selection and preserve the experiment.
 
