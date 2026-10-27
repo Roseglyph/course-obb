@@ -223,3 +223,35 @@ Draw addresses separately from values. Separate initialization from assignment. 
 type and actual type before a virtual call. Check object lifetime and array bounds before
 calculating a number. For the flagged array question, recognize both the intended classroom cue and
 the exact C++ distinction.
+
+Linked lists: follow the links
+Head is the entry point; a cursor is temporary. Prepend: new.next=old head, then head=new. Append
+with head only stops at the tail after handling empty. Search tests current, not current->next, so
+it visits the tail. Null means no node. Doubly linked neighbors must agree in both directions. Save
+next before delete. Head-only append/search O(n), prepend O(1); tail makes append O(1). Nodes occupy
+separate allocations and have link overhead.
+
+Stacks and undo / redo
+LIFO/FILO: push and pop at top. Push 5,20 then pop removes 20. Initialize top=nullptr. The custom
+Node* pop detaches and transfers ownership; caller deletes it. std::stack::pop is void; top first.
+Undo reverses the latest action and transfers it to redo. A new branch clears redo in our policy.
+Heap-linked stack nodes are different from runtime call frames.
+
+Queues and circular buffers
+FIFO: enqueue at rear, dequeue at front. Both endpoints start null. Removing the final node clears
+rear too. Both-endpoint linked operations are O(1). Ring example uses read/write indices plus count:
+empty 0, full capacity. Advance modulo capacity; refuse invalid operations. Equal indices alone do
+not distinguish full from empty in this policy.
+
+Bubble and insertion sort
+Bubble fixes the maximum at the right per pass; neighbor access requires j+1<end. Insertion saves
+key, shifts larger prefix values, fills the gap; guard j>0 first. Fixed-pass bubble: Θ(n²) all
+orders. Early-exit bubble: Θ(n) best, Θ(n²) worst. Insertion: Θ(n) best, Θ(n²) worst. Both shown
+iterative forms use O(1) auxiliary storage. Strict > comparisons keep equal elements in order.
+
+Merge sort: split, return, combine
+Return empty/singleton unchanged. Split n into floor(n/2) and the remainder. Sort left, then right,
+then merge. Compare only non-exhausted heads; advance only the consumed cursor; append the entire
+remainder. Left-on-equality preserves stability. Recursion tree contains all work; active stack is
+one path. Θ(n log n) time, conventional Θ(n) merge workspace, O(log n) call depth. Iterative merge
+sort is also valid.
